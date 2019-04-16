@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var o1 = {name: 'o1'}
+
+        // var o2 = new Object({name: 'o2'})
+
+        // var M = function () {this.name = name}
+
+        // var o3 = new M('o3')
+
+        // var p = {name: 'p'}
+
+        // var o4 = Object.create(p)
+
+        // M.prototype.say = function () {
+        //     console.log('hi guy')
+        // }
+
+        // var o5 = new M('o5')
+
+        // function test(person) {
+        // person.age = 26
+        // person = {
+        //     name: 'yyy',
+        //     age: 30
+        // }
+
+        // return person
+        // }
+        // const p1 = {
+        //     name: 'yck',
+        //     age: 25
+        // }
+        // const p2 = test(p1)
+        // console.log(p1) 
+        // console.log(p2) 
+
+        // for (let index = 0; index < array.length; index++) {
+        //     const element = array[index];
+            
+        // }
+
+        // var contacts = [
+        //     {
+        //         "firstName": "Akira",
+        //         "lastName": "Laine",
+        //         "number": "0543236543",
+        //         "likes": ["Pizza", "Coding", "Brownie Points"]
+        //     },
+        //     {
+        //         "firstName": "Harry",
+        //         "lastName": "Potter",
+        //         "number": "0994372684",
+        //         "likes": ["Hogwarts", "Magic", "Hagrid"]
+        //     },
+        //     {
+        //         "firstName": "Sherlock",
+        //         "lastName": "Holmes",
+        //         "number": "0487345643",
+        //         "likes": ["Intriguing Cases", "Violin"]
+        //     },
+        //     {
+        //         "firstName": "Kristian",
+        //         "lastName": "Vos",
+        //         "number": "unknown",
+        //         "likes": ["Javascript", "Gaming", "Foxes"]
+        //     }
+        // ];
+
+
+        // function lookUp(firstName, prop){
+        // // 请把你的代码写在这条注释以下
+        //     for (let i = 0; i < contacts.length; i++) {
+        //         if (firstName == contacts[i].firstName) {
+        //             if (contacts[i].hasOwnProperty(prop)) {
+        //                 return contacts[i][prop];
+        //             } else {
+        //                 return 'No such property';
+        //             }
+        //         }
+        //         // return 'No such contact';
+        //     }
+
+        //     // for(var i = 0; i < contacts.length; i++){
+        //     //     if(contacts[i].firstName == firstName){
+        //     //         if(contacts[i].hasOwnProperty(prop)){
+        //     //             return contacts[i][prop];
+        //     //         }
+        //     //         else{
+        //     //             return "No such property";
+        //     //         }
+        //     //     }                                        
+        //     // }
+        //     // return "No such contact";
+        // // 请把你的代码写在这条注释以上
+        // }
+
+        // console.log(lookUp("Kristian", "lastName"))
+        // console.log(lookUp("Sherlock", "likes"))
+
+        function checkArr(arr) {
+            return Array.isArray(arr)
+        }
+
+        function swap(arr, pre, current) {
+            let currentValue = arr[current]
+            arr[current] = arr[pre]
+            arr[pre] = currentValue
+        }
+
+        
+        function algorithm(arr) {
+
+            if (!checkArr(arr)) return
+
+            // 冒泡排序
+            // for (let i = 0; i < arr.length - 1; i++) {
+            //     for (let j = 0; j < arr.length - 1 - i; j++) {
+            //         if (arr[j] > arr[j+1]) {
+            //             swap(arr, j, j+1)
+            //         }
+            //     }
+            // }
+
+            // 选择排序
+
+            // 最小值
+            // for (let i = 0; i < arr.length - 1; i++) {
+            //     var min = i
+            //     for (let j = i + 1; j < arr.length; j++) {
+            //         if (arr[min] > arr[j]) {
+            //             swap(arr, j, min)
+            //         }
+            //     }
+            // }
+
+            // 最大值
+            // for (let i = arr.length - 1; i >= 0; i--) {
+            //     var max = i
+            //     for (let j = i - 1 ; j >= 0; j--) {
+            //         if (arr[j] > arr[max]) {
+            //             swap(arr, j, max)
+            //         }
+            //     }
+            // }
+
+            // 插入排序
+            // for (let i = 0; i < arr.length - 1; i++) {
+            //     for (let j = i + 1; j >= 0; j--) {
+            //         if (arr[j-1] > arr[j]) {
+            //             swap(arr, j-1, j)
+            //         }
+            //     }
+            // }
+
+            return arr
+        }
+
+        // 归并排序
+        function mergeSort(arr) {
+            if (!checkArr(arr)) return
+            var len = arr.length
+            if (len === 1) return arr
+
+            var mid = Math.floor(len / 2)
+            var leftArr = arr.slice(0, mid)
+            var rightArr = arr.slice(mid, len)
+
+            return merge(mergeSort(leftArr), mergeSort(rightArr))
+        }
+
+        function merge(leftArr, rightArr) {
+            // console.log(leftArr, rightArr)
+            var result = []
+            var leftIndex = 0
+            var rightIndex = 0
+
+            while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
+                if (leftArr[leftIndex] < rightArr[rightIndex]) {
+                    result.push(leftArr[leftIndex])
+                    leftIndex++
+                } else {
+                    result.push(rightArr[rightIndex])
+                    rightIndex++
+                }
+            }
+            
+            // console.log(result);
+
+            while (leftIndex < leftArr.length) {
+                result.push(leftArr[leftIndex])
+                leftIndex++
+            }
+            // console.log(result);
+
+            while (rightIndex < leftArr.length) {
+                result.push(rightArr[rightIndex])
+                rightIndex++
+            }
+            return result
+        }
+
+        arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
+        arr1 = [2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+        algorithm(arr)
+        console.log(arr)
+        console.log(mergeSort(arr));
+        console.log(arr1);
+    </script>
+</body>
+</html>
